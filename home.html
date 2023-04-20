@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Task</title>
+</head>
+<body>
+    <h1>Task</h1>
+    <form method="post">
+        <label for="task">Write Task:</label>
+        <input type="text" id="task" name="task"><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+        <input type="submit" value="Add task">
+    </form>
+    <br>
+    <form action="/reminders" method="post">
+        <input type="hidden" name="action" value="today">
+        <input type="submit" value="Show Today's Tasks">
+    </form>
+    
+    {% if reminders %}
+        <h2>Tasks:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task, date in reminders %}
+                    <tr>
+                        <td>{{ task }}</td>
+                        <td>{{ date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
